@@ -1,33 +1,37 @@
 :root {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Segoe UI", sans-serif;
-  color: #1c1c1e;
-  background: #f5f5f7;
+  color: #302a25;
+  background: #fff9ed;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-  --bg: #f5f5f7;
-  --surface: #ffffff;
+  --bg: #fff9ed;
+  --surface: #fffefa;
   --surface-elevated: #ffffff;
-  --text: #1c1c1e;
-  --muted: #8e8e93;
-  --fill: #e5e5ea;
-  --separator: rgba(60, 60, 67, .12);
-  --accent: #007aff;
-  --expense: #f05252;
-  --income: #20a45b;
-  --shadow: 0 10px 32px rgba(20, 30, 50, .07);
+  --text: #302a25;
+  --muted: #8a7b6f;
+  --fill: #f1e7d7;
+  --separator: rgba(91, 68, 45, .12);
+  --accent: #f67624;
+  --sunny: #ffd52d;
+  --sky: #269fe7;
+  --expense: #e9574f;
+  --income: #299b65;
+  --shadow: 0 10px 30px rgba(113, 73, 34, .08);
 }
 
 :root[data-theme="dark"] {
   color: #f5f5f7;
-  background: #000;
-  --bg: #000000;
-  --surface: #1c1c1e;
-  --surface-elevated: #2c2c2e;
-  --text: #f5f5f7;
-  --muted: #98989f;
-  --fill: #3a3a3c;
-  --separator: rgba(235, 235, 245, .13);
-  --accent: #0a84ff;
+  background: #17120e;
+  --bg: #17120e;
+  --surface: #241e19;
+  --surface-elevated: #302720;
+  --text: #fff8ed;
+  --muted: #b4a497;
+  --fill: #3b3028;
+  --separator: rgba(255, 235, 214, .13);
+  --accent: #ff9445;
+  --sunny: #f1c92d;
+  --sky: #48b8f5;
   --expense: #ff6961;
   --income: #32d273;
   --shadow: none;
@@ -35,7 +39,7 @@
 
 * { box-sizing: border-box; }
 html { min-height: 100%; background: var(--bg); -webkit-tap-highlight-color: transparent; }
-body { margin: 0; min-width: 320px; min-height: 100vh; min-height: 100dvh; background: var(--bg); color: var(--text); }
+body { margin: 0; min-width: 320px; min-height: 100vh; min-height: 100dvh; background: radial-gradient(circle at 8% 2%, color-mix(in srgb, var(--sunny) 13%, transparent), transparent 250px), var(--bg); color: var(--text); }
 button, input, select { font: inherit; color: inherit; }
 button { border: 0; cursor: pointer; }
 button:disabled { opacity: .38; cursor: default; }

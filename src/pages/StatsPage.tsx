@@ -32,7 +32,7 @@ export function StatsPage({ month, onMonthChange, transactions }: Props) {
 
   return <main className="page stats-page">
     <MonthSwitcher month={month} onChange={onMonthChange} />
-    {expenses.length === 0 ? <section className="list-card"><EmptyState title="本月还没有支出" text="有记录后，这里会展示消费构成和趋势" /></section> : <>
+    {expenses.length === 0 ? <section className="list-card"><EmptyState title="本月还没有支出" text="有记录后，这里会展示消费构成和趋势" illustration="laptop" /></section> : <>
       <section className="chart-card">
         <div className="section-heading"><h2>支出分类</h2><span>共 {formatMoney(total)}</span></div>
         <div className="donut-wrap">

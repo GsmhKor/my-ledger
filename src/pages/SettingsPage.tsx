@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import { exportCsv, exportJson, readBackup } from '../services/backup'
 import type { LedgerTransaction } from '../types/transaction'
 import { Icon } from '../components/Icon'
+import catLaptop from '../assets/cat-laptop.webp'
 
 interface Props {
   transactions: LedgerTransaction[]
@@ -42,6 +43,10 @@ export function SettingsPage({ transactions, dark, setDark, onRestore, onClear, 
 
   return <main className="page settings-page">
     <header className="simple-header"><h1>设置</h1><p>数据只保存在此设备的浏览器中</p></header>
+    <section className="privacy-banner">
+      <img src={catLaptop} alt="" />
+      <div><strong>账单只住在这里</strong><span>不会上传云端，记得定期备份哦</span></div>
+    </section>
     <h2 className="settings-section-title">数据与备份</h2>
     <section className="settings-card">
       <button onClick={() => exportCsv(transactions)} disabled={!transactions.length}><span className="settings-icon blue"><Icon name="download" size={20} /></span><span>导出 CSV<small>便于用 Excel 查看</small></span><Icon name="chevron-right" size={18} /></button>
@@ -55,6 +60,6 @@ export function SettingsPage({ transactions, dark, setDark, onRestore, onClear, 
     </section>
     <h2 className="settings-section-title">危险操作</h2>
     <section className="settings-card danger-card"><button onClick={clear} disabled={!transactions.length}><span className="settings-icon red"><Icon name="trash" size={20} /></span><span>清空全部数据<small>删除此设备上的所有账单</small></span><Icon name="chevron-right" size={18} /></button></section>
-    <section className="app-info"><div className="mini-app-icon">账</div><strong>我的账本</strong><span>版本 1.0.0</span><p>纯本地 · 无账号 · 无追踪</p></section>
+    <section className="app-info"><img className="mini-app-icon" src={`${import.meta.env.BASE_URL}pwa-192x192.png`} alt="我的账本图标" /><strong>我的账本</strong><span>版本 1.0.0</span><p>纯本地 · 无账号 · 无追踪</p></section>
   </main>
 }

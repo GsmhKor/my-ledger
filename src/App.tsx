@@ -30,7 +30,7 @@ function App() {
   const openEdit = (item: LedgerTransaction) => { setEditing(item); setEditorOpen(true) }
 
   return <div className="app-shell">
-    {loading ? <div className="app-loading"><div className="mini-app-icon">账</div><span>正在打开账本…</span></div> : <>
+    {loading ? <div className="app-loading"><img className="mini-app-icon" src={`${import.meta.env.BASE_URL}pwa-192x192.png`} alt="" /><span>正在打开账本…</span></div> : <>
       {tab === 'home' && <HomePage month={month} onMonthChange={setMonth} transactions={monthTransactions} onEdit={openEdit} onSeeAll={() => setTab('bills')} />}
       {tab === 'bills' && <BillsPage month={month} onMonthChange={setMonth} transactions={monthTransactions} onEdit={openEdit} />}
       {tab === 'stats' && <StatsPage month={month} onMonthChange={setMonth} transactions={monthTransactions} />}
