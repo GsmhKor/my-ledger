@@ -20,7 +20,7 @@ export const EXPENSE_CATEGORIES: Category[] = [
   { id: 'entertainment', label: '娱乐', emoji: '🎮', color: '#7e8ce0', type: 'expense', retired: true },
   { id: 'medical', label: '医疗', emoji: '💊', color: '#ec6f91', type: 'expense', retired: true },
   { id: 'daily', label: '日用品', emoji: '🧻', color: '#8d9c75', type: 'expense' },
-  { id: 'pet', label: '宠物', emoji: '🐱', color: '#d9955e', type: 'expense' },
+  { id: 'pet', label: '金丝熊', emoji: '🐱', color: '#d9955e', type: 'expense' },
   { id: 'travel', label: '旅行', emoji: '✈️', color: '#3bb7ad', type: 'expense', retired: true },
   { id: 'other-expense', label: '其他', emoji: '📦', color: '#8e8e93', type: 'expense' },
 ]

@@ -48,6 +48,9 @@ async function removeConnectedLightBackground(input, output) {
 }
 
 const icons = [
+  ['design/generated/cat-tab-home-master.png', 'src/assets/cat-tab-home.png', 192],
+  ['design/generated/cat-tab-bills-master.png', 'src/assets/cat-tab-bills.png', 192],
+  ['design/generated/cat-tab-stats-master.png', 'src/assets/cat-tab-stats.png', 192],
   ['design/generated/cat-food-master.png', 'src/assets/cat-food.png', 192],
   ['design/generated/cat-transport-master.png', 'src/assets/cat-transport.png', 192],
   ['design/generated/cat-daily-master.png', 'src/assets/cat-daily.png', 192],
