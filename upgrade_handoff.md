@@ -33,6 +33,7 @@
 
 - 截至本文更新，用户明确提出的功能改动已完成，没有收到下一项功能需求。第 8 节是已知待办，不代表本次已经修复，也不应当作用户已经要求全部实施。
 - 用户已明确授权本次提交并推送到 `origin/main`；现有工作流会在 main 推送后自动构建和部署 Pages。该授权针对本次内容，后续发布按后续会话指示执行。
+- 已确认：功能改动及交接基础提交 `d35029d`（`完善每日支出统计并建立跨会话交接文档`）已成功推送到 `origin/main`，Git 返回 `c68aa5e..d35029d main -> main`。本条为推送后的文档补记；尚未核验 GitHub Actions 部署结果或手机更新结果。
 - 本文随本次内容一起提交，提交号及远端是否包含该提交以 Git 为准：`git log -5 --oneline`、`git log -1 --oneline -- upgrade_handoff.md`；联网 `git fetch origin` 后用 `git status -sb` 核对远端差异。不要把此文件中的发布意图当成 push 或 Pages 部署成功的证据。
 - Pages 部署状态需另查 GitHub Actions；手机更新情况需实机核对。不要通过清除网站数据或重建 IndexedDB 刷新版本。
 
