@@ -4,19 +4,22 @@
 .icon-button:active { background: var(--fill); }
 .month-switcher { height: 48px; display: flex; align-items: center; justify-content: center; gap: 4px; margin-bottom: 18px; }
 .month-switcher h1 { min-width: 150px; margin: 0; font-size: 21px; text-align: center; letter-spacing: -.02em; }
-.balance-card { position: relative; overflow: hidden; padding: 25px 22px 21px; color: white; border-radius: 26px; background: linear-gradient(145deg, #ffb32c 0%, #ff7b24 55%, #eb5c3d 100%); box-shadow: 0 16px 34px rgba(218, 93, 28, .22); }
-.balance-card::after { content: ''; position: absolute; top: -42px; right: -30px; width: 132px; height: 132px; border: 20px solid rgba(255, 221, 54, .19); border-radius: 50%; pointer-events: none; }
+.balance-card { --balance-paper: #fff9f0; position: relative; container-type: inline-size; display: flex; flex-direction: column; justify-content: center; aspect-ratio: 3 / 2; min-height: 240px; overflow: hidden; padding: clamp(28px, 6vw, 42px) clamp(22px, 6vw, 42px); color: #623f30; border: 1px solid rgba(126, 101, 72, .12); border-radius: 26px; background: var(--balance-paper); box-shadow: 0 12px 30px rgba(83, 129, 159, .12); }
+:root[data-theme="dark"] .balance-card { --balance-paper: #352c25; color: #fff8ed; border-color: var(--separator); box-shadow: none; }
 .balance-card > * { position: relative; z-index: 1; }
+.balance-card > .balance-art { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; opacity: .5; pointer-events: none; }
 .balance-main { display: flex; flex-direction: column; align-items: center; padding-bottom: 22px; }
-.balance-main span { font-size: 14px; opacity: .77; }
-.balance-main strong { max-width: 100%; margin-top: 8px; overflow: hidden; font-size: clamp(32px, 9vw, 43px); font-variant-numeric: tabular-nums; letter-spacing: -.045em; text-overflow: ellipsis; }
-.balance-grid { display: grid; grid-template-columns: 1fr 1fr; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.2); }
-.balance-grid > div { min-width: 0; display: flex; flex-direction: column; gap: 7px; }
-.balance-grid > div + div { padding-left: 20px; border-left: 1px solid rgba(255,255,255,.2); }
-.balance-grid span { font-size: 12px; opacity: .8; }
-.balance-grid strong { overflow: hidden; font-size: 17px; font-variant-numeric: tabular-nums; text-overflow: ellipsis; }
+.balance-main span { font-size: 14px; }
+.balance-main strong { max-width: 100%; margin-top: 8px; font-size: 43px; font-variant-numeric: tabular-nums; letter-spacing: -.035em; text-align: center; }
+.balance-main span, .balance-main strong, .balance-grid span, .balance-grid strong { padding: 2px 6px; border-radius: 8px; background: color-mix(in srgb, var(--balance-paper) 86%, transparent); }
+.balance-main strong, .balance-grid strong { line-height: 1.2; white-space: normal; overflow-wrap: anywhere; }
+.balance-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); padding-top: 18px; border-top: 1px solid rgba(126,101,72,.2); }
+.balance-grid > div { min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 7px; padding-right: 10px; text-align: center; }
+.balance-grid > div + div { padding-right: 0; padding-left: 10px; border-left: 1px solid rgba(126,101,72,.2); }
+.balance-grid span { max-width: 100%; font-size: 12px; }
+.balance-grid strong { max-width: 100%; font-size: 20px; font-variant-numeric: tabular-nums; }
 .balance-grid i { width: 7px; height: 7px; display: inline-block; margin-right: 6px; border-radius: 50%; }
-.expense-dot { background: #fff0b0; }.income-dot { background: #7ce8c0; }
+.expense-dot { background: #91b2ff; }.income-dot { background: #3886dc; }
 .section-heading { display: flex; align-items: baseline; justify-content: space-between; margin: 27px 4px 11px; }
 .section-heading h2 { margin: 0; font-size: 19px; letter-spacing: -.02em; }
 .section-heading button, .section-heading span { padding: 0; color: var(--muted); background: transparent; font-size: 13px; }

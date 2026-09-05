@@ -60,6 +60,6 @@ export function SettingsPage({ transactions, dark, setDark, onRestore, onClear, 
     </section>
     <h2 className="settings-section-title">危险操作</h2>
     <section className="settings-card danger-card"><button onClick={clear} disabled={!transactions.length}><span className="settings-icon red"><Icon name="trash" size={20} /></span><span>清空全部数据<small>删除此设备上的所有账单</small></span><Icon name="chevron-right" size={18} /></button></section>
-    <section className="app-info"><img className="mini-app-icon" src={`${import.meta.env.BASE_URL}pwa-192x192.png`} alt="我的账本图标" /><strong>我的账本</strong><span>版本 1.3.0</span><p>纯本地 · 无账号 · 无追踪</p></section>
+    <section className="app-info"><img className="mini-app-icon" src={`${import.meta.env.BASE_URL}pwa-192x192.png`} alt="我的账本图标" /><strong>我的账本</strong><span>版本 1.4.0</span><p>纯本地 · 无账号 · 无追踪</p></section>
   </main>
 }

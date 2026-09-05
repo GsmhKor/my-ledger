@@ -70,4 +70,8 @@ await Promise.all([
   removeConnectedLightBackground('design/generated/cat-sleeping-master.png', 'src/assets/cat-sleeping.webp'),
   removeConnectedLightBackground('design/generated/cat-laptop-master.png', 'src/assets/cat-laptop.webp'),
 ])
+await sharp('design/generated/balance-hydrangea-master.png')
+  .resize({ width: 1200, withoutEnlargement: true })
+  .png({ compressionLevel: 9, palette: true, colours: 256, dither: 0.8 })
+  .toFile('src/assets/balance-hydrangea.png')
 console.log('PWA icons and illustrations generated.')
