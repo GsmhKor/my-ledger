@@ -49,6 +49,9 @@
 .tab-cat { display: block; width: 34px; height: 34px; object-fit: contain; }
 .floating-add { position: fixed; z-index: 21; right: max(20px, calc((100vw - 640px) / 2)); bottom: calc(82px + env(safe-area-inset-bottom)); min-width: 58px; height: 58px; display: flex; align-items: center; justify-content: center; gap: 7px; padding: 0 19px; border-radius: 29px; color: white; background: var(--accent); box-shadow: 0 8px 24px rgba(225, 100, 30, .34); font-weight: 650; }
 .floating-add:active { transform: scale(.96); }
+.floating-add--picnic { overflow: hidden; color: var(--text); background: var(--surface); box-shadow: 0 8px 24px rgba(83,108,73,.22); text-shadow: 0 1px 2px var(--surface); }
+.floating-add--picnic::before { content: ''; position: absolute; inset: 0; background: url('./assets/add-picnic.png') center / cover no-repeat; opacity: .6; pointer-events: none; }
+.floating-add--picnic > * { position: relative; z-index: 1; }
 .search-field { height: 44px; display: flex; align-items: center; gap: 7px; margin-bottom: 12px; padding: 0 12px; border-radius: 13px; color: var(--muted); background: var(--surface); }
 .search-field input { min-width: 0; flex: 1; height: 100%; padding: 0; border: 0; outline: 0; background: transparent; }
 .filter-row { display: flex; gap: 10px; margin-bottom: 24px; }
