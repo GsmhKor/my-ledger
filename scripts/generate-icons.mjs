@@ -48,6 +48,7 @@ async function removeConnectedLightBackground(input, output) {
 }
 
 const icons = [
+  ['design/generated/cat-pet-master.png', 'src/assets/cat-pet.png', 192],
   ['design/generated/app-icon-master.png', 'public/apple-touch-icon.png', 180],
   ['design/generated/app-icon-master.png', 'public/pwa-192x192.png', 192],
   ['design/generated/app-icon-master.png', 'public/pwa-512x512.png', 512],

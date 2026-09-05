@@ -4,6 +4,7 @@ import { formatMoney } from '../utils/currency'
 import { daysInMonth, monthKey } from '../utils/date'
 import { EmptyState } from '../components/EmptyState'
 import { MonthSwitcher } from '../components/MonthSwitcher'
+import { CategorySymbol } from '../components/CategorySymbol'
 
 interface Props {
   month: string
@@ -45,7 +46,7 @@ export function StatsPage({ month, onMonthChange, transactions }: Props) {
           <div className="donut" style={{ background: `conic-gradient(${gradient})` }}><div><small>本月支出</small><strong>{formatMoney(total)}</strong></div></div>
         </div>
         <div className="legend-list">{categoryStats.map((item) => <div key={item.category.id}>
-          <i style={{ background: item.category.color }} /><span>{item.category.emoji} {item.category.label}</span><strong>{formatMoney(item.amount)}</strong><small>{Math.round(item.amount / total * 100)}%</small>
+          <i style={{ background: item.category.color }} /><span className="legend-category"><CategorySymbol category={item.category} />{item.category.label}</span><strong>{formatMoney(item.amount)}</strong><small>{Math.round(item.amount / total * 100)}%</small>
         </div>)}</div>
       </section>
       <section className="chart-card trend-card">

@@ -3,6 +3,7 @@ import { categoriesFor } from '../constants/categories'
 import type { LedgerTransaction, TransactionDraft, TransactionType } from '../types/transaction'
 import { toLocalDateString } from '../utils/date'
 import { Icon } from './Icon'
+import { CategorySymbol } from './CategorySymbol'
 
 interface Props {
   transaction?: LedgerTransaction
@@ -20,6 +21,7 @@ export function TransactionEditor({ transaction, onClose, onSave, onDelete, noti
   const [date, setDate] = useState(transaction?.date ?? toLocalDateString())
   const [note, setNote] = useState(transaction?.note ?? '')
   const [saving, setSaving] = useState(false)
+  const availableCategories = categoriesFor(type, transaction?.category)
 
   useEffect(() => {
     document.body.classList.add('modal-open')
@@ -27,6 +29,7 @@ export function TransactionEditor({ transaction, onClose, onSave, onDelete, noti
   }, [])
 
   const changeType = (next: TransactionType) => {
+    if (next === type) return
     setType(next)
     setCategory(categoriesFor(next)[0].id)
   }
@@ -75,8 +78,8 @@ export function TransactionEditor({ transaction, onClose, onSave, onDelete, noti
         <fieldset className="category-fieldset">
           <legend>分类</legend>
           <div className="category-grid">
-            {categoriesFor(type).map((item) => <button key={item.id} type="button" className={category === item.id ? 'selected' : ''} onClick={() => setCategory(item.id)}>
-              <span>{item.emoji}</span><small>{item.label}</small>
+            {availableCategories.map((item) => <button key={item.id} type="button" className={category === item.id ? 'selected' : ''} aria-pressed={category === item.id} onClick={() => setCategory(item.id)}>
+              <CategorySymbol category={item} /><small>{item.label}</small>
             </button>)}
           </div>
         </fieldset>

@@ -1,6 +1,7 @@
 import { getCategory } from '../constants/categories'
 import type { LedgerTransaction } from '../types/transaction'
 import { formatSignedMoney } from '../utils/currency'
+import { CategorySymbol } from './CategorySymbol'
 
 interface Props {
   transaction: LedgerTransaction
@@ -10,7 +11,7 @@ interface Props {
 export function TransactionRow({ transaction, onClick }: Props) {
   const category = getCategory(transaction.category)
   return <button className="transaction-row" onClick={onClick}>
-    <span className="category-icon" style={{ background: `${category.color}1c` }}>{category.emoji}</span>
+    <span className="category-icon" style={{ background: `${category.color}1c` }}><CategorySymbol category={category} /></span>
     <span className="transaction-copy">
       <strong>{transaction.note || category.label}</strong>
       <small>{category.label}</small>
