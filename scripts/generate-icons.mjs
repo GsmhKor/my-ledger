@@ -48,6 +48,10 @@ async function removeConnectedLightBackground(input, output) {
 }
 
 const icons = [
+  ['design/generated/cat-food-master.png', 'src/assets/cat-food.png', 192],
+  ['design/generated/cat-transport-master.png', 'src/assets/cat-transport.png', 192],
+  ['design/generated/cat-daily-master.png', 'src/assets/cat-daily.png', 192],
+  ['design/generated/cat-other-master.png', 'src/assets/cat-other.png', 192],
   ['design/generated/cat-pet-master.png', 'src/assets/cat-pet.png', 192],
   ['design/generated/app-icon-master.png', 'public/apple-touch-icon.png', 180],
   ['design/generated/app-icon-master.png', 'public/pwa-192x192.png', 192],
@@ -56,7 +60,7 @@ const icons = [
 ]
 
 await Promise.all(icons.map(([input, output, size]) => sharp(input)
-  .resize(size, size)
+  .resize(size, size, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
   .png({ compressionLevel: 9, palette: true, colours: 256, dither: 0.8 })
   .toFile(output)))
 await Promise.all([

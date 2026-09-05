@@ -11,9 +11,9 @@ export interface Category {
 
 export const EXPENSE_CATEGORIES: Category[] = [
   { id: 'food', label: '餐饮', emoji: '🍜', color: '#ff8a65', type: 'expense' },
-  { id: 'grocery', label: '超市', emoji: '🛒', color: '#66bb6a', type: 'expense' },
+  { id: 'grocery', label: '超市', emoji: '🛒', color: '#66bb6a', type: 'expense', retired: true },
   { id: 'transport', label: '交通', emoji: '🚃', color: '#42a5f5', type: 'expense' },
-  { id: 'shopping', label: '购物', emoji: '🛍️', color: '#ab7bea', type: 'expense' },
+  { id: 'shopping', label: '购物', emoji: '🛍️', color: '#ab7bea', type: 'expense', retired: true },
   { id: 'rent', label: '房租', emoji: '🏠', color: '#ef6c75', type: 'expense', retired: true },
   { id: 'utilities', label: '水电煤', emoji: '💡', color: '#f5b942', type: 'expense', retired: true },
   { id: 'phone', label: '通讯', emoji: '📱', color: '#26a69a', type: 'expense', retired: true },
