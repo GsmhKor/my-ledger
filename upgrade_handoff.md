@@ -85,6 +85,7 @@
 - 保留已去除的文字底框、浅色深棕字/深色浅字、金额自适应字号及换行；仅背景变淡，不调整卡片布局或背景原图。
 - 来源及提示词更新至 `design/category-cats-source.md`，背景说明同步至 `design/balance-hydrangea-source.md`。
 - 追加要求：首页右下角「记一笔」改用附件野餐猫背景，去掉英语和署名，透明度 40% 即 `opacity: .6`；文字与加号保持不透明。
+- 首页「记一笔」浅色模式文字及加号改用汇总金额的棕色 `#633F31`；深色保持米白色，原文字阴影和背景透明度不变。
 - `App.tsx` 仅首页按钮启用新样式，`App.css` 使用独立背景层；保持原按钮尺寸、窄屏行为和点击回调，其他标签页按钮不变。
 - 新增 `design/generated/add-picnic-master.png`、`src/assets/add-picnic.png`（480px 宽），脚本加入重建条目；提示词见 `design/add-picnic-source.md`。
 - 仅处理指定图片；未运行 lint、build、测试或应用验证，未修改金额计算、账单、存储、备份格式或版本号。
