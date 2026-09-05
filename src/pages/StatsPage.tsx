@@ -1,7 +1,7 @@
 import { getCategory } from '../constants/categories'
 import type { LedgerTransaction } from '../types/transaction'
 import { formatMoney } from '../utils/currency'
-import { daysInMonth } from '../utils/date'
+import { daysInMonth, monthKey } from '../utils/date'
 import { EmptyState } from '../components/EmptyState'
 import { MonthSwitcher } from '../components/MonthSwitcher'
 
@@ -28,7 +28,13 @@ export function StatsPage({ month, onMonthChange, transactions }: Props) {
     const amount = expenses.filter((item) => Number(item.date.slice(8, 10)) === day).reduce((sum, item) => sum + item.amount, 0)
     return { day, amount }
   })
-  const maxDaily = Math.max(...daily.map((item) => item.amount), 1)
+  const maxDaily = Math.max(...daily.map((item) => item.amount), 0)
+  const today = new Date()
+  const currentMonth = monthKey(today)
+  const elapsedDays = month < currentMonth ? daily.length : month === currentMonth ? today.getDate() : 0
+  const elapsedExpense = daily.slice(0, elapsedDays).reduce((sum, item) => sum + item.amount, 0)
+  const averageDaily = elapsedDays ? elapsedExpense / elapsedDays : null
+  const projectedExpense = averageDaily === null ? null : month < currentMonth ? total : averageDaily * daily.length
 
   return <main className="page stats-page">
     <MonthSwitcher month={month} onChange={onMonthChange} />
@@ -43,10 +49,17 @@ export function StatsPage({ month, onMonthChange, transactions }: Props) {
         </div>)}</div>
       </section>
       <section className="chart-card trend-card">
-        <div className="section-heading"><h2>每日支出</h2><span>峰值 {formatMoney(maxDaily)}</span></div>
+        <div className="section-heading trend-heading">
+          <h2>每日支出</h2>
+          <dl className="trend-summary">
+            <div><dt>最大支出</dt><dd>{formatMoney(maxDaily)}</dd></div>
+            <div><dt>平均支出</dt><dd>{averageDaily === null ? '—' : formatMoney(averageDaily)}</dd></div>
+            <div><dt>本月预测</dt><dd>{projectedExpense === null ? '—' : formatMoney(projectedExpense)}</dd></div>
+          </dl>
+        </div>
         <div className="bar-chart" aria-label="本月每日支出柱状图">
           {daily.map((item) => <div className="bar-column" key={item.day} title={`${item.day}日 ${formatMoney(item.amount)}`}>
-            <i style={{ height: `${Math.max(item.amount / maxDaily * 100, item.amount ? 5 : 1)}%` }} />
+            <i style={{ height: `${Math.max(item.amount / Math.max(maxDaily, 1) * 100, item.amount ? 5 : 1)}%` }} />
             {(item.day === 1 || item.day % 5 === 0 || item.day === daily.length) && <small>{item.day}</small>}
           </div>)}
         </div>
