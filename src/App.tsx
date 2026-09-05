@@ -1,5 +1,4 @@
 import { useMemo, useState } from 'react'
-import { Icon } from './components/Icon'
 import { TabBar, type Tab } from './components/TabBar'
 import { TransactionEditor } from './components/TransactionEditor'
 import { useDarkMode } from './hooks/useDarkMode'
@@ -35,7 +34,7 @@ function App() {
       {tab === 'bills' && <BillsPage month={month} onMonthChange={setMonth} transactions={monthTransactions} onEdit={openEdit} />}
       {tab === 'stats' && <StatsPage month={month} onMonthChange={setMonth} transactions={monthTransactions} />}
       {tab === 'settings' && <SettingsPage transactions={transactions} dark={dark} setDark={setDark} onRestore={restore} onClear={clear} notify={notify} />}
-      <button className={`floating-add${tab === 'home' ? ' floating-add--picnic' : ''}`} onClick={openNew} aria-label="记一笔"><Icon name="plus" size={30} /></button>
+      <button className={`floating-add${tab === 'home' ? ' floating-add--picnic' : ''}`} onClick={openNew} aria-label="记一笔"></button>
       <TabBar active={tab} onChange={setTab} />
       {editorOpen && <TransactionEditor transaction={editing} onClose={() => setEditorOpen(false)} onSave={save} onDelete={remove} notify={notify} />}
       {toast && <div className="toast" role="status">{toast}</div>}
