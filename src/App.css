@@ -11,7 +11,7 @@
 .balance-main { display: flex; flex-direction: column; align-items: center; padding-bottom: 22px; }
 .balance-main span { font-size: 14px; }
 .balance-main strong { max-width: 100%; margin-top: 8px; font-size: 43px; font-variant-numeric: tabular-nums; letter-spacing: -.035em; text-align: center; }
-.balance-main span, .balance-main strong, .balance-grid span, .balance-grid strong { padding: 2px 6px; border-radius: 8px; background: color-mix(in srgb, var(--balance-paper) 86%, transparent); }
+.balance-main span, .balance-main strong, .balance-grid span, .balance-grid strong { padding: 2px 6px; }
 .balance-main strong, .balance-grid strong { line-height: 1.2; white-space: normal; overflow-wrap: anywhere; }
 .balance-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); padding-top: 18px; border-top: 1px solid rgba(126,101,72,.2); }
 .balance-grid > div { min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 7px; padding-right: 10px; text-align: center; }

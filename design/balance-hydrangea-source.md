@@ -5,7 +5,7 @@
 - 母版：`design/generated/balance-hydrangea-master.png`。
 - 应用资源：`src/assets/balance-hydrangea.png`，使用现有 sharp 缩放至 1200px 宽并压缩 PNG。
 - 图片保留完整颜色；由首页 CSS 的 `opacity: .5` 设置 50% 不透明度，仅作用于背景图。
-- 真实标题和动态金额由 React 渲染，不写入图片；文字衬底使用 86% 不透明度的卡片主题底色。
+- 真实标题和动态金额由 React 渲染，不写入图片；按用户后续要求已移除文字衬底，直接显示在背景图上。
 - `scripts/generate-icons.mjs` 包含该背景的重建步骤；本轮只生成此资源。
 - 后续修补：用户指出下部中央猫咪脸旁黑色小方块。整图编辑未消除，改为放大局部用内置 image_gen 清理，仅将原图坐标 (773, 745) 的 16 × 17 像素区域合成回母版，周围图案沿用原图；应用 PNG 随母版重新生成。
 
