@@ -1,41 +1,41 @@
 # 支出分类猫咪图标
 
-来源：沿用用户提供的猫咪贴纸风格，以项目内 `design/generated/cat-pet-master.png` 为角色与画风参考，使用内置 `image_gen` 工具生成四个新姿势。属于 AI 风格改绘，不是原贴纸逐像素裁切。宠物继续使用原皇冠猫。
+本次按用户提供的三张单图，使用内置 `image_gen` 提取/改绘；不是逐像素原图裁切。
+日用品使用图 1 的黄色卷发猫（含梳子和剪刀），餐饮使用图 2 的喷火猫，其他使用图 3 的受撞猫并去掉全部「dong」文字。
+保留分类 ID，分类名和原生筛选下拉框的 emoji 不变；记账选项、首页/账单行和统计图例继续共用现有图片映射。
 
-每种图案保存为 `design/generated/cat-<名称>-master.png` 母版和 `src/assets/cat-<名称>.png` 应用资源（192 × 192，透明 PNG），名称为 `food`、`transport`、`daily`、`other`。`npm run icons` 可从母版重建应用资源。
+| 用途 | 透明母版 | 应用资源 |
+| --- | --- | --- |
+| 日用品 | `design/generated/cat-daily-master.png` | `src/assets/cat-daily.png` |
+| 餐饮 | `design/generated/cat-food-master.png` | `src/assets/cat-food.png` |
+| 其他支出 | `design/generated/cat-other-master.png` | `src/assets/cat-other.png` |
 
-图标用于记账分类、首页/账单行和统计图例；原生筛选下拉框继续使用 emoji 和文字。分类 id 和备份格式不变。
+内置工具生成透明图片（其他图标追加一次去背景），sharp 裁去外围透明留白、补边并缩放为 192 × 192 PNG。
+仅重建上述三张资源；现有 `scripts/generate-icons.mjs` 已包含它们，不需要更改重建脚本。
+交通和金丝熊的现用素材另见 `transport-navigation-cats-source.md` 和 `cat-pet-source.md`。
 
-初稿中有不透明的棋盘格背景，随后使用同一内置工具去背景，最终仅保存通过透明通道检查的母版。资源缩放使用 `contain` 保持长宽比，避免裁掉猫咪和道具。
+## 内置工具完整提示词
 
-## 去背景修正提示词（四张共用）
+### daily
 
 ```text
-Use case: background-extraction. Remove the background from this image. Deliver an RGBA PNG cutout with a genuinely transparent alpha channel, like a background-removed product image. The current light gray and white checkerboard is unwanted opaque artwork: erase all of it outside the sticker, including gaps around the paws/tail/props, replacing it with zero-alpha pixels. Keep the cat and its prop completely unchanged, including white fur and black outlines. Do not draw another checkerboard and do not add a solid background. Transparent background, isolated subject only.
+Use case: precise-object-edit. The three attached images are edit targets for three separate mobile ledger category icons. For this request output ONLY the specified target below. Faithfully preserve the original sticker's uneven black hand-drawn outlines, colors, pose, proportions and expression. Isolate the complete sticker centered on a square canvas with 7 percent padding. Use actual transparent alpha if available; otherwise a uniform pure white background. NEVER draw a checkerboard, shadows, watermarks or additional characters. Keep all internal white cat fur opaque white, with no pattern. Use IMAGE 1: the smiling white calico cat with a huge fluffy YELLOW curly hairstyle, orange cheek patches, pink comb floating at upper left and blue scissors at upper right. Keep the full hair, comb and scissors, tiny neck/body strokes and the little black motion lines. Do not replace this with a tissue cat or add any letters.
 ```
 
-## 完整提示词
-
-### 餐饮：吃面猫
+### food
 
 ```text
-Use case: style-transfer. Asset type: tiny mobile ledger category sticker. Input image is the character and drawing-style reference. Create ONE new pose of this exact cute white calico cat with orange/yellow patches, wide oval head, tiny pink nose and chunky irregular black pen outlines with subtle marker texture. Preserve character identity and handmade sticker style. Remove the crown and red rays. Dining category: happy cat eating noodles from one small warm orange bowl, holding chopsticks, eyes joyfully closed. Show head, little paws and bowl in a compact arrangement. Center the complete sticker on a square canvas with about 8% transparent padding. Actual transparent alpha background, no paper rectangle, no checkerboard pattern, no cast shadow, no text or letters. Keep shapes simple, bold and readable at 36 pixels, one cat and only the specified prop, no additional decorations. This is an adapted drawing, not a photoreal image.
+Use case: precise-object-edit. The three attached images are edit targets for three separate mobile ledger category icons. For this request output ONLY the specified target below. Faithfully preserve the original sticker's uneven black hand-drawn outlines, colors, pose, proportions and expression. Isolate the complete sticker centered on a square canvas with 7 percent padding. Use actual transparent alpha if available; otherwise a uniform pure white background. NEVER draw a checkerboard, shadows, watermarks or additional characters. Keep all internal white cat fur opaque white, with no pattern. Use IMAGE 2: the white calico cat breathing a large flame to the RIGHT, the flame has red outer shape, orange middle and bright yellow center, with tiny paws/body below the wide face. Keep this precise funny fire-breathing cat pose and full flame. No food bowl, chef hat or other objects. No letters.
 ```
 
-### 交通：乘车猫
+### other
 
 ```text
-Use case: style-transfer. Asset type: tiny mobile ledger category sticker. Input image is the character and drawing-style reference. Create ONE new pose of this exact cute white calico cat with orange/yellow patches, wide oval head, tiny pink nose and chunky irregular black pen outlines with subtle marker texture. Preserve character identity and handmade sticker style. Remove the crown and red rays. Transport category: happy cat peeking out of the large front window of a tiny sky-blue train, with two simple round headlights and two short rail strokes beneath. Cat face dominates the compact train icon, cheerful going-out expression. Center the complete sticker on a square canvas with about 8% transparent padding. Actual transparent alpha background, no paper rectangle, no checkerboard pattern, no cast shadow, no text or letters. Keep shapes simple, bold and readable at 36 pixels, one cat and only the specified prop, no additional decorations. This is an adapted drawing, not a photoreal image.
+Use case: precise-object-edit. The three attached images are edit targets for three separate mobile ledger category icons. For this request output ONLY the specified target below. Faithfully preserve the original sticker's uneven black hand-drawn outlines, colors, pose, proportions and expression. Isolate the complete sticker centered on a square canvas with 7 percent padding. Use actual transparent alpha if available; otherwise a uniform pure white background. NEVER draw a checkerboard, shadows, watermarks or additional characters. Keep all internal white cat fur opaque white, with no pattern. Use IMAGE 3: the wide white calico cat with orange side patches, squeezed-shut eyes, small dot mouth, two tiny body lines, and the impact motion arcs and little pale puff above the head. REMOVE the entire word 'dong' above the cat; replace its area with empty background. Preserve the cat, puff and impact arcs, but no text or letters anywhere.
 ```
 
-### 日用品：纸巾猫
+### 其他图标透明背景修正
 
 ```text
-Use case: style-transfer. Asset type: tiny mobile ledger category sticker. Input image is the character and drawing-style reference. Create ONE new pose of this exact cute white calico cat with orange/yellow patches, wide oval head, tiny pink nose and chunky irregular black pen outlines with subtle marker texture. Preserve character identity and handmade sticker style. Remove the crown and red rays. Daily supplies category: happy cat holding a small mint-green tissue box with a single large white tissue sticking up; head and little paws behind the box, simple cozy expression. The box is clearly a tissue box, not a gift. Center the complete sticker on a square canvas with about 8% transparent padding. Actual transparent alpha background, no paper rectangle, no checkerboard pattern, no cast shadow, no text or letters. Keep shapes simple, bold and readable at 36 pixels, one cat and only the specified prop, no additional decorations. This is an adapted drawing, not a photoreal image.
-```
-
-### 其他：思考猫
-
-```text
-Use case: style-transfer. Asset type: tiny mobile ledger category sticker. Input image is the character and drawing-style reference. Create ONE new pose of this exact cute white calico cat with orange/yellow patches, wide oval head, tiny pink nose and chunky irregular black pen outlines with subtle marker texture. Preserve character identity and handmade sticker style. Remove the crown and red rays. Other expenses category: curious cat tilting its big head, one small paw touching its cheek in a thinking pose, eyes looking up, one small orange question mark above one ear. No other props. Compact composition. Center the complete sticker on a square canvas with about 8% transparent padding. Actual transparent alpha background, no paper rectangle, no checkerboard pattern, no cast shadow, no text or letters. Keep shapes simple, bold and readable at 36 pixels, one cat and only the specified prop, no additional decorations. This is an adapted drawing, not a photoreal image.
+Use case: background-extraction. Remove only the solid white exterior background of this exact cat sticker, replacing it with actual transparent alpha pixels. Preserve the opaque white face inside the black outline and the pale puff at upper left. Preserve all black impact arcs, eyes and body lines, orange patches, proportions and framing. Seal tiny accidental gaps in the outer cat-head outline as needed so the white face remains opaque. Keep the area where dong was removed empty: NO words, letters or extra shapes. Output RGBA PNG with a genuinely transparent background, NOT a white rectangle and NOT a checkerboard painting. Do not redraw the character.
 ```
