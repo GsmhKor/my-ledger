@@ -86,10 +86,11 @@
 - 来源及提示词更新至 `design/category-cats-source.md`，背景说明同步至 `design/balance-hydrangea-source.md`。
 - 首页右下角浮动记账按钮使用野餐猫背景，去掉英语和署名；背景透明度改为 0%，即背景层 `opacity: 1`，完整显示图片。
 - 浮动记账按钮中可见的「记一笔」文字和加号均已删除，所有标签页仍保留 58 × 58px 圆形可点击区域；`aria-label="记一笔"` 与原点击回调仍保留。
-- `App.tsx` 仅为首页按钮附加野餐猫样式，`App.css` 使用独立背景层；其他标签页使用普通强调色按钮。本轮未验证、未提交或推送。
+- `App.tsx` 仅为首页按钮附加野餐猫样式，`App.css` 使用独立背景层；其他标签页使用普通强调色按钮。
 - 新增 `design/generated/add-picnic-master.png`、`src/assets/add-picnic.png`（480px 宽），脚本加入重建条目；提示词见 `design/add-picnic-source.md`。
-- 仅处理指定图片；未运行 lint、build、测试或应用验证，未修改金额计算、账单、存储、备份格式或版本号。
-- 本轮按用户要求统一版本为 `1.5.5`，保留设置页已有修改；未运行验证，未代为提交或推送，后续发布按用户指示执行。
+- UI 调整未修改金额计算、账单、存储或备份格式。
+- 项目版本保持用户要求的 `1.5.5`。发布时曾误将锁文件内第三方依赖版本一并替换，导致 GitHub Actions 在 `npm ci` 下载不存在的 `regexp.prototype.flags@1.5.5` 时返回 404；已恢复该依赖为 `1.5.4`，并同时恢复被误改的 `electron-to-chromium` 锁定信息。
+- 已在本地通过干净安装 `npm ci` 和正式构建 `npm run build`；未代为提交或推送，后续发布按用户指示执行。
 
 ## 6. 下一会话开发规则
 
