@@ -6,7 +6,7 @@
 ## 1. 当前项目状态
 
 - 项目：`my-ledger`，面向个人使用的 iPhone 记账 PWA。
-- 当前登记版本：`1.6.0`，项目、锁文件根项目版本与设置页显示已同步；提交推送及线上发布状态未查询。
+- 当前登记版本：`1.6.1`，项目、锁文件根项目版本与设置页显示已同步；提交推送及线上发布状态未查询。
 - 开发环境：Windows + VS Code；手机通过 Safari 添加到主屏幕使用。
 - 仓库：<https://github.com/GsmhKor/my-ledger>，分支 `main`。
 - 线上：<https://gsmhkor.github.io/my-ledger/>，部署子路径 `/my-ledger/`。
@@ -78,10 +78,13 @@
 
 ## 5. 最近一次尚未发布的改动
 
+- 首页底部导航“账单”厨师猫的两侧毛色已按用户样本统一为金橙色；帽子、表情、线条、黄色底座和橙红边缘保持不变。
+- 内置 `image_gen` 负责局部改绘；因工具输出实体棋盘格，随后用 sharp 清理连通的外部灰色背景并保留轮廓内白色，透明母版和 192 × 192 应用 PNG 均已替换。
+- 本轮已运行 `npm run icons` 并检查最终 `cat-tab-bills.png`；提示词与处理说明见 `design/transport-navigation-cats-source.md`，未重新运行 lint 或 build。
 - 收入分类新增三张用户指定猫咪图：图 1 对应奖金、图 2 对应退款、图 3 对应投资收益；工资和其他收入不变。
 - 内置 `image_gen` 提取/改绘为透明母版，并生成 192 × 192 应用 PNG；共享 `CategorySymbol` 映射会同步用于记账选项、账单行和统计图例，原生筛选下拉框仍使用原 emoji。
 - 新增 `design/income-category-cats-source.md` 记录素材映射和完整提示词，`scripts/generate-icons.mjs` 加入三张资源的重建条目。
-- 本轮已运行 `npm run icons` 并检查三张应用 PNG 的尺寸、透明通道和画面；未重新运行 lint 或 build，未提交或推送。
+- 收入分类改动已运行 `npm run icons` 并检查三张应用 PNG 的尺寸、透明通道和画面；未提交或推送。
 - 用户要求：日用品改为图 1 黄色卷发猫，餐饮改为图 2 喷火猫，其他改为图 3 受撞猫，去掉「dong」。
 - 内置 image_gen 提取/改绘，保留分类名称和 ID；替换 `cat-daily`、`cat-food`、`cat-other` 的透明母版及 192 × 192 应用 PNG。
 - 现有共享组件自动用于记账选项、账单行和统计图例；原生筛选下拉框仍用原 emoji，未改业务代码或重建脚本。
@@ -93,7 +96,7 @@
 - 设置页不显示浮动记账按钮，避免出现无内容的橙色圆球；首页、账单和统计页的按钮显示效果一致。
 - 新增 `design/generated/add-picnic-master.png`、`src/assets/add-picnic.png`（480px 宽），脚本加入重建条目；提示词见 `design/add-picnic-source.md`。
 - UI 调整未修改金额计算、账单、存储或备份格式。
-- 项目版本已按用户要求更新为 `1.6.0`。此前发布 `1.5.5` 时曾误将锁文件内第三方依赖版本一并替换，导致 GitHub Actions 在 `npm ci` 下载不存在的 `regexp.prototype.flags@1.5.5` 时返回 404；已恢复该依赖为 `1.5.4`，并同时恢复被误改的 `electron-to-chromium` 锁定信息。
+- 项目版本已按用户要求更新为 `1.6.1`。此前发布 `1.5.5` 时曾误将锁文件内第三方依赖版本一并替换，导致 GitHub Actions 在 `npm ci` 下载不存在的 `regexp.prototype.flags@1.5.5` 时返回 404；已恢复该依赖为 `1.5.4`，并同时恢复被误改的 `electron-to-chromium` 锁定信息。
 - 此前锁文件修复已在本地通过干净安装 `npm ci` 和正式构建 `npm run build`；后续发布按用户指示执行。
 
 ## 6. 下一会话开发规则
