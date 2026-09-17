@@ -51,6 +51,7 @@ const icons = [
   ['design/generated/cat-tab-home-master.png', 'src/assets/cat-tab-home.png', 192],
   ['design/generated/cat-tab-bills-master.png', 'src/assets/cat-tab-bills.png', 192],
   ['design/generated/cat-tab-stats-master.png', 'src/assets/cat-tab-stats.png', 192],
+  ['design/generated/cat-tab-settings-master.png', 'src/assets/cat-tab-settings.png', 192],
   ['design/generated/cat-food-master.png', 'src/assets/cat-food.png', 192],
   ['design/generated/cat-transport-master.png', 'src/assets/cat-transport.png', 192],
   ['design/generated/cat-daily-master.png', 'src/assets/cat-daily.png', 192],
@@ -70,6 +71,16 @@ const icons = [
 await Promise.all(icons.map(([input, output, size]) => sharp(input)
   .resize(size, size, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
   .png({ compressionLevel: 9, palette: true, colours: 256, dither: 0.8 })
+  .toFile(output)))
+await Promise.all([
+  ['design/generated/cat-empty-cloud-master.png', 'src/assets/cat-empty-cloud.webp'],
+  ['design/generated/cat-empty-bills-master.png', 'src/assets/cat-empty-bills.webp'],
+  ['design/generated/cat-empty-stats-master.png', 'src/assets/cat-empty-stats.webp'],
+  ['design/generated/cat-settings-privacy-master.png', 'src/assets/cat-settings-privacy.webp'],
+].map(([input, output]) => sharp(input)
+  .trim({ background: { r: 0, g: 0, b: 0, alpha: 0 }, threshold: 3 })
+  .resize({ width: 560, height: 320, fit: 'inside' })
+  .webp({ quality: 88, alphaQuality: 100 })
   .toFile(output)))
 await Promise.all([
   removeConnectedLightBackground('design/generated/cat-sleeping-master.png', 'src/assets/cat-sleeping.webp'),

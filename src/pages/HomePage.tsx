@@ -31,7 +31,7 @@ export function HomePage({ month, onMonthChange, transactions, onEdit, onSeeAll 
     </section>
     <div className="section-heading"><h2>最近记录</h2>{transactions.length > 0 && <button onClick={onSeeAll}>查看全部</button>}</div>
     <section className="list-card">
-      {transactions.length === 0 ? <EmptyState /> : transactions.slice(0, 5).map((item) => <TransactionRow key={item.id} transaction={item} onClick={() => onEdit(item)} />)}
+      {transactions.length === 0 ? <EmptyState illustration="home" /> : transactions.slice(0, 5).map((item) => <TransactionRow key={item.id} transaction={item} onClick={() => onEdit(item)} />)}
     </section>
   </main>
 }

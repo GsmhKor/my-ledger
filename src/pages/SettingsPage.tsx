@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 import { exportCsv, exportJson, readBackup } from '../services/backup'
 import type { LedgerTransaction } from '../types/transaction'
 import { Icon } from '../components/Icon'
-import catLaptop from '../assets/cat-laptop.webp'
+import catSettingsPrivacy from '../assets/cat-settings-privacy.webp'
 
 interface Props {
   transactions: LedgerTransaction[]
@@ -44,7 +44,7 @@ export function SettingsPage({ transactions, dark, setDark, onRestore, onClear, 
   return <main className="page settings-page">
     <header className="simple-header"><h1>设置</h1><p>数据只保存在此设备的浏览器中</p></header>
     <section className="privacy-banner">
-      <img src={catLaptop} alt="" />
+      <img src={catSettingsPrivacy} alt="" />
       <div><strong>账单只住在这里</strong><span>不会上传云端，记得定期备份哦</span></div>
     </section>
     <h2 className="settings-section-title">数据与备份</h2>

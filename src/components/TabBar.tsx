@@ -2,6 +2,7 @@ import { Icon } from './Icon'
 import catHome from '../assets/cat-tab-home.png'
 import catBills from '../assets/cat-tab-bills.png'
 import catStats from '../assets/cat-tab-stats.png'
+import catSettings from '../assets/cat-tab-settings.png'
 
 export type Tab = 'home' | 'bills' | 'stats' | 'settings'
 
@@ -9,7 +10,7 @@ const tabs: { id: Tab; label: string; icon: Parameters<typeof Icon>[0]['name']; 
   { id: 'home', label: '首页', icon: 'home', image: catHome },
   { id: 'bills', label: '账单', icon: 'list', image: catBills },
   { id: 'stats', label: '统计', icon: 'chart', image: catStats },
-  { id: 'settings', label: '设置', icon: 'settings' },
+  { id: 'settings', label: '设置', icon: 'settings', image: catSettings },
 ]
 
 export function TabBar({ active, onChange }: { active: Tab; onChange: (tab: Tab) => void }) {
