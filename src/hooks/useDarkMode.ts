@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 export function useDarkMode() {
   const [dark, setDark] = useState(() => {
     const saved = localStorage.getItem('my-ledger-theme')
-    return saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches
+    return saved === 'dark'
   })
 
   useEffect(() => {

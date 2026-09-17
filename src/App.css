@@ -41,7 +41,7 @@
 .transaction-amount { margin-left: 10px; font-size: 16px; font-weight: 620; font-variant-numeric: tabular-nums; }
 .transaction-amount.expense { color: var(--text); }.transaction-amount.income { color: var(--income); }
 .empty-state { min-height: 220px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px; text-align: center; }
-.empty-state > img { width: min(220px, 82%); height: 118px; margin-bottom: 12px; object-fit: contain; }
+.empty-state > img { width: min(220px, 82%); height: 118px; margin-bottom: 12px; object-fit: contain; transform: scale(.7); transform-origin: center; }
 .empty-state strong { font-size: 17px; }.empty-state p { margin: 6px 0 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
 .tab-bar { position: fixed; z-index: 20; right: 0; bottom: 0; left: 0; height: calc(68px + env(safe-area-inset-bottom)); display: grid; grid-template-columns: repeat(4, 1fr); padding: 6px max(8px, calc((100vw - 680px) / 2)) env(safe-area-inset-bottom); border-top: 1px solid var(--separator); background: color-mix(in srgb, var(--surface) 88%, transparent); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); }
 .tab-bar button { min-width: 60px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: var(--muted); background: transparent; font-size: 10px; }
@@ -100,7 +100,7 @@
 .danger-card button > span:nth-child(2) { color: var(--expense); }
 .switch { position: relative; width: 51px; height: 31px; }.switch input { position: absolute; opacity: 0; }.switch i { position: absolute; inset: 0; border-radius: 16px; background: var(--fill); transition: .2s; }.switch i::after { content: ''; position: absolute; top: 2px; left: 2px; width: 27px; height: 27px; border-radius: 50%; background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,.25); transition: .2s; }.switch input:checked + i { background: #34c759; }.switch input:checked + i::after { transform: translateX(20px); }
 .privacy-banner { min-height: 126px; display: flex; align-items: center; gap: 8px; overflow: hidden; padding: 10px 17px 9px 5px; border: 1px solid color-mix(in srgb, var(--sunny) 42%, transparent); border-radius: 20px; background: linear-gradient(135deg, color-mix(in srgb, var(--sunny) 22%, var(--surface)), color-mix(in srgb, var(--accent) 10%, var(--surface))); }
-.privacy-banner img { width: 145px; height: 104px; flex: 0 0 auto; object-fit: contain; }
+.privacy-banner img { width: 145px; height: 104px; flex: 0 0 auto; object-fit: contain; transform: scale(.7); transform-origin: center; }
 .privacy-banner div { min-width: 0; display: flex; flex-direction: column; gap: 6px; }.privacy-banner strong { font-size: 16px; }.privacy-banner span { color: var(--muted); font-size: 12px; line-height: 1.5; }
 .app-info { display: flex; flex-direction: column; align-items: center; padding: 38px 10px 0; }.mini-app-icon { width: 58px; height: 58px; display: block; margin-bottom: 11px; border-radius: 16px; object-fit: cover; box-shadow: 0 8px 18px rgba(218, 116, 30, .24); }.app-info strong { font-size: 16px; }.app-info span, .app-info p { margin: 4px 0 0; color: var(--muted); font-size: 11px; }
 .sheet-backdrop { position: fixed; z-index: 100; inset: 0; display: flex; align-items: flex-end; justify-content: center; background: rgba(0,0,0,.38); animation: fade-in .18s ease-out; }
