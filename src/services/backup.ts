@@ -39,7 +39,7 @@ export function exportJson(transactions: LedgerTransaction[]) {
     transactions,
   }
   downloadFile(
-    `我的账本-完整备份-${new Date().toISOString().slice(0, 10)}.json`,
+    '我的账单-完整备份.json',
     JSON.stringify(backup, null, 2),
     'application/json',
   )

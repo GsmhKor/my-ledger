@@ -73,7 +73,7 @@ export function TransactionEditor({ transaction, onClose, onSave, onDelete, noti
         </div>
         <label className="amount-field">
           <span>金额</span>
-          <div><b>¥</b><input autoFocus inputMode="numeric" pattern="[0-9]*" placeholder="0" value={amount} onChange={(e) => setAmount(e.target.value.replace(/\D/g, '').replace(/^0+(?=\d)/, ''))} /></div>
+          <div><b>¥</b><input inputMode="numeric" pattern="[0-9]*" placeholder="0" value={amount} onChange={(e) => setAmount(e.target.value.replace(/\D/g, '').replace(/^0+(?=\d)/, ''))} /></div>
         </label>
         <fieldset className="category-fieldset">
           <legend>分类</legend>
