@@ -57,7 +57,19 @@
 .compact-segmented { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); padding: 3px; border-radius: 11px; background: var(--fill); }
 .compact-segmented button { min-height: 36px; border-radius: 9px; color: var(--muted); background: transparent; font-size: 13px; }
 .compact-segmented button.active { color: var(--text); background: var(--surface); box-shadow: 0 2px 7px rgba(0,0,0,.08); }
-.filter-row select { width: 120px; padding: 0 9px; border: 0; border-radius: 11px; outline: 0; background: var(--surface); font-size: 13px; }
+.category-filter { position: relative; width: 144px; flex: 0 0 auto; font-size: 13px; }
+.category-filter summary { min-height: 44px; display: flex; align-items: center; gap: 5px; padding: 0 9px; border-radius: 11px; background: var(--surface); cursor: pointer; list-style: none; touch-action: manipulation; }
+.category-filter summary::-webkit-details-marker { display: none; }
+.category-filter summary:focus-visible, .category-filter-options button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.category-filter-label { min-width: 0; flex: 1; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.category-filter-arrow { color: var(--muted); }
+.category-filter[open] .category-filter-arrow { transform: rotate(180deg); }
+.category-filter-options { position: absolute; z-index: 30; top: calc(100% + 8px); right: 0; width: 220px; max-height: min(52dvh, 440px); overflow-y: auto; overscroll-behavior: contain; padding: 8px; border: 1px solid var(--separator); border-radius: 16px; background: var(--surface); box-shadow: var(--shadow); }
+.category-filter-options h2 { margin: 12px 9px 5px; color: var(--muted); font-size: 12px; font-weight: 500; }
+.category-filter-options button { width: 100%; min-height: 44px; display: flex; align-items: center; gap: 10px; padding: 6px 10px; border-radius: 10px; background: transparent; text-align: left; }
+.category-filter-options button[aria-pressed="true"] { color: var(--accent); background: var(--fill); }
+.category-filter-options button[aria-pressed="true"]::after { content: '✓'; margin-left: auto; }
+.category-filter-options .category-symbol { width: 32px; height: 32px; font-size: 23px; }
 .date-group { margin-bottom: 19px; }.date-group > h2 { margin: 0 5px 8px; color: var(--muted); font-size: 13px; font-weight: 550; }
 .chart-card { margin-bottom: 18px; padding: 1px 18px 18px; }
 .chart-card .section-heading { margin-top: 19px; }
