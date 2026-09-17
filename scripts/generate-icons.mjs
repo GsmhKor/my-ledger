@@ -59,6 +59,8 @@ const icons = [
   ['design/generated/cat-income-bonus-master.png', 'src/assets/cat-income-bonus.png', 192],
   ['design/generated/cat-income-refund-master.png', 'src/assets/cat-income-refund.png', 192],
   ['design/generated/cat-income-investment-master.png', 'src/assets/cat-income-investment.png', 192],
+  ['design/generated/cat-income-salary-master.png', 'src/assets/cat-income-salary.png', 192],
+  ['design/generated/cat-income-other-master.png', 'src/assets/cat-income-other.png', 192],
   ['design/generated/app-icon-master.png', 'public/apple-touch-icon.png', 180],
   ['design/generated/app-icon-master.png', 'public/pwa-192x192.png', 192],
   ['design/generated/app-icon-master.png', 'public/pwa-512x512.png', 512],

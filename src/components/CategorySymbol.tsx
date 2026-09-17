@@ -7,6 +7,8 @@ import catOther from '../assets/cat-other.png'
 import catIncomeBonus from '../assets/cat-income-bonus.png'
 import catIncomeRefund from '../assets/cat-income-refund.png'
 import catIncomeInvestment from '../assets/cat-income-investment.png'
+import catIncomeSalary from '../assets/cat-income-salary.png'
+import catIncomeOther from '../assets/cat-income-other.png'
 
 const categoryImages = new Map([
   ['food', catFood],
@@ -17,6 +19,8 @@ const categoryImages = new Map([
   ['bonus', catIncomeBonus],
   ['refund', catIncomeRefund],
   ['investment', catIncomeInvestment],
+  ['salary', catIncomeSalary],
+  ['other-income', catIncomeOther],
 ])
 
 export function CategorySymbol({ category }: { category: Pick<Category, 'id' | 'emoji'> }) {
