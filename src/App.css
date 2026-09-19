@@ -1,4 +1,13 @@
 .app-shell { min-height: 100vh; min-height: 100dvh; }
+.app-update-toolbar { width: min(100%, 680px); display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 8px 12px; margin: 0 auto; padding: calc(env(safe-area-inset-top) + 8px) 16px 0; }
+.app-update-toolbar button, .app-update-notice button { min-height: 44px; padding: 10px 14px; border-radius: 14px; color: var(--accent); background: var(--surface); font-size: 13px; }
+.app-update-toolbar > span { width: 100%; color: var(--muted); font-size: 13px; text-align: right; }
+.app-update-notice { width: min(calc(100% - 32px), 648px); display: flex; align-items: center; gap: 12px; margin: 10px auto 0; padding: 12px; border: 1px solid var(--separator); border-radius: 16px; background: var(--surface); }
+.app-update-notice > div { flex: 1; min-width: 0; }
+.app-update-notice strong { display: block; font-size: 14px; overflow-wrap: anywhere; }
+.app-update-notice small { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; }
+.app-update-notice button { flex-shrink: 0; color: white; background: var(--accent); }
+.app-shell > div > .page { padding-top: 12px; }
 .page { width: min(100%, 680px); min-height: 100vh; margin: 0 auto; padding: calc(env(safe-area-inset-top) + 18px) 16px calc(116px + env(safe-area-inset-bottom)); }
 .icon-button { width: 44px; height: 44px; display: grid; place-items: center; padding: 0; border-radius: 50%; background: transparent; }
 .icon-button:active { background: var(--fill); }

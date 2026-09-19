@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { exportCsv, exportJson, readBackup } from '../services/backup'
 import type { LedgerTransaction } from '../types/transaction'
 import { Icon } from '../components/Icon'
@@ -11,11 +11,12 @@ interface Props {
   onRestore: (items: LedgerTransaction[]) => Promise<void>
   onClear: () => Promise<void>
   notify: (message: string) => void
+  working: boolean
+  setWorking: (working: boolean) => void
 }
 
-export function SettingsPage({ transactions, dark, setDark, onRestore, onClear, notify }: Props) {
+export function SettingsPage({ transactions, dark, setDark, onRestore, onClear, notify, working, setWorking }: Props) {
   const fileInput = useRef<HTMLInputElement>(null)
-  const [working, setWorking] = useState(false)
 
   const importBackup = async (file?: File) => {
     if (!file) return

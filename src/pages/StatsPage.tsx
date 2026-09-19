@@ -10,9 +10,10 @@ interface Props {
   month: string
   onMonthChange: (month: string) => void
   transactions: LedgerTransaction[]
+  todayExpense: number
 }
 
-export function StatsPage({ month, onMonthChange, transactions }: Props) {
+export function StatsPage({ month, onMonthChange, transactions, todayExpense }: Props) {
   const expenses = transactions.filter((item) => item.type === 'expense')
   const total = expenses.reduce((sum, item) => sum + item.amount, 0)
   const totals = new Map<string, number>()
@@ -53,7 +54,7 @@ export function StatsPage({ month, onMonthChange, transactions }: Props) {
         <div className="section-heading trend-heading">
           <h2>每日支出</h2>
           <dl className="trend-summary">
-            <div><dt>最大支出</dt><dd>{formatMoney(maxDaily)}</dd></div>
+            <div><dt>本日支出</dt><dd>{formatMoney(todayExpense)}</dd></div>
             <div><dt>平均支出</dt><dd>{averageDaily === null ? '—' : formatMoney(averageDaily)}</dd></div>
             <div><dt>本月预测</dt><dd>{projectedExpense === null ? '—' : formatMoney(projectedExpense)}</dd></div>
           </dl>
