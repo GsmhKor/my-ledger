@@ -58,7 +58,7 @@ function App() {
     </section>}
     <div inert={appUpdate.updating}>
     {loading ? <div className="app-loading"><img className="mini-app-icon" src={`${import.meta.env.BASE_URL}pwa-192x192.png`} alt="" /><span>正在打开账本…</span></div> : <>
-      {tab === 'home' && <HomePage month={month} onMonthChange={setMonth} transactions={monthTransactions} onEdit={openEdit} onSeeAll={() => setTab('bills')} />}
+      {tab === 'home' && <HomePage month={month} onMonthChange={setMonth} transactions={monthTransactions} todayExpense={todayExpense} onEdit={openEdit} onSeeAll={() => setTab('bills')} />}
       {tab === 'bills' && <BillsPage month={month} onMonthChange={setMonth} transactions={monthTransactions} onEdit={openEdit} />}
       {tab === 'stats' && <StatsPage month={month} onMonthChange={setMonth} transactions={monthTransactions} todayExpense={todayExpense} />}
       {tab === 'settings' && <SettingsPage transactions={transactions} dark={dark} setDark={setDark} onRestore={(items) => write(() => restore(items))} onClear={() => write(clear)} notify={notify} working={settingsWorking} setWorking={setSettingsWorking} />}

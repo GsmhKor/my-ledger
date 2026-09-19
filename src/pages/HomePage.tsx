@@ -1,5 +1,6 @@
 import type { LedgerTransaction } from '../types/transaction'
 import { formatMoney } from '../utils/currency'
+import { daysInMonth, monthKey, toLocalDateString } from '../utils/date'
 import { MonthSwitcher } from '../components/MonthSwitcher'
 import { TransactionRow } from '../components/TransactionRow'
 import { EmptyState } from '../components/EmptyState'
@@ -9,24 +10,30 @@ interface Props {
   month: string
   onMonthChange: (month: string) => void
   transactions: LedgerTransaction[]
+  todayExpense: number
   onEdit: (transaction: LedgerTransaction) => void
   onSeeAll: () => void
 }
 
-export function HomePage({ month, onMonthChange, transactions, onEdit, onSeeAll }: Props) {
-  const expense = transactions.filter((item) => item.type === 'expense').reduce((sum, item) => sum + item.amount, 0)
-  const income = transactions.filter((item) => item.type === 'income').reduce((sum, item) => sum + item.amount, 0)
-  const balanceText = formatMoney(income - expense)
+export function HomePage({ month, onMonthChange, transactions, todayExpense, onEdit, onSeeAll }: Props) {
+  const expenses = transactions.filter((item) => item.type === 'expense')
+  const expense = expenses.reduce((sum, item) => sum + item.amount, 0)
+  const today = new Date()
+  const currentMonth = monthKey(today)
+  const todayKey = toLocalDateString(today)
+  const elapsedDays = month < currentMonth ? daysInMonth(month) : month === currentMonth ? today.getDate() : 0
+  const elapsedExpense = expenses.filter((item) => item.date <= todayKey).reduce((sum, item) => sum + item.amount, 0)
+  const todayExpenseText = formatMoney(todayExpense)
   const expenseText = formatMoney(expense)
-  const incomeText = formatMoney(income)
+  const averageText = elapsedDays ? formatMoney(elapsedExpense / elapsedDays) : '—'
   return <main className="page home-page">
     <MonthSwitcher month={month} onChange={onMonthChange} />
     <section className="balance-card">
       <img className="balance-art" src={balanceBackground} alt="" aria-hidden="true" />
-      <div className="balance-main"><span>本月结余</span><strong style={{ fontSize: `clamp(14px, ${130 / Math.max(balanceText.length, 8)}cqw, 43px)` }}>{balanceText}</strong></div>
+      <div className="balance-main"><span>本日支出</span><strong style={{ fontSize: `clamp(14px, ${130 / Math.max(todayExpenseText.length, 8)}cqw, 43px)` }}>{todayExpenseText}</strong></div>
       <div className="balance-grid">
         <div><span><i className="expense-dot" />本月支出</span><strong style={{ fontSize: `clamp(12px, ${58 / Math.max(expenseText.length, 6)}cqw, 20px)` }}>{expenseText}</strong></div>
-        <div><span><i className="income-dot" />本月收入</span><strong style={{ fontSize: `clamp(12px, ${58 / Math.max(incomeText.length, 6)}cqw, 20px)` }}>{incomeText}</strong></div>
+        <div><span><i className="income-dot" />平均支出</span><strong style={{ fontSize: `clamp(12px, ${58 / Math.max(averageText.length, 6)}cqw, 20px)` }}>{averageText}</strong></div>
       </div>
     </section>
     <div className="section-heading"><h2>最近记录</h2>{transactions.length > 0 && <button onClick={onSeeAll}>查看全部</button>}</div>
