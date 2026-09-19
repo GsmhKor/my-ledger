@@ -50,6 +50,7 @@ function App() {
 
   return <div className="app-shell">
     <header className="app-update-toolbar">
+      {tab === 'home' && <strong className="app-brand">我的账单 <span>{__APP_VERSION__}</span></strong>}
       <button type="button" disabled={!appUpdate.ready || appUpdate.checking || appUpdate.updating} aria-busy={appUpdate.checking} onClick={() => void appUpdate.checkUpdate()}>{appUpdate.checking ? '检查中…' : '查看更新'}</button>
       {appUpdate.message && !appUpdate.available && <span role="status">{appUpdate.message}</span>}
     </header>
