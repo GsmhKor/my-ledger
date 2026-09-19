@@ -4,12 +4,13 @@ import { TransactionEditor } from './components/TransactionEditor'
 import { useDarkMode } from './hooks/useDarkMode'
 import { useLedger } from './hooks/useLedger'
 import { useAppUpdate } from './hooks/useAppUpdate'
+import { useLocalDate } from './hooks/useLocalDate'
 import { BillsPage } from './pages/BillsPage'
 import { HomePage } from './pages/HomePage'
 import { SettingsPage } from './pages/SettingsPage'
 import { StatsPage } from './pages/StatsPage'
 import type { LedgerTransaction } from './types/transaction'
-import { monthKey, toLocalDateString } from './utils/date'
+import { monthKey } from './utils/date'
 import './App.css'
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
   const updateBlocked = loading || editorOpen || settingsWorking || saving
   const appUpdate = useAppUpdate(updateBlocked)
   const monthTransactions = useMemo(() => transactions.filter((item) => item.date.startsWith(month)), [transactions, month])
-  const today = toLocalDateString()
+  const today = useLocalDate()
   const todayExpense = transactions.reduce((sum, item) => sum + (item.type === 'expense' && item.date === today ? item.amount : 0), 0)
 
   const write = async (operation: () => Promise<void>) => {
@@ -58,9 +59,9 @@ function App() {
     </section>}
     <div inert={appUpdate.updating}>
     {loading ? <div className="app-loading"><img className="mini-app-icon" src={`${import.meta.env.BASE_URL}pwa-192x192.png`} alt="" /><span>正在打开账本…</span></div> : <>
-      {tab === 'home' && <HomePage month={month} onMonthChange={setMonth} transactions={monthTransactions} todayExpense={todayExpense} onEdit={openEdit} onSeeAll={() => setTab('bills')} />}
+      {tab === 'home' && <HomePage month={month} onMonthChange={setMonth} transactions={monthTransactions} today={today} todayExpense={todayExpense} onEdit={openEdit} onSeeAll={() => setTab('bills')} />}
       {tab === 'bills' && <BillsPage month={month} onMonthChange={setMonth} transactions={monthTransactions} onEdit={openEdit} />}
-      {tab === 'stats' && <StatsPage month={month} onMonthChange={setMonth} transactions={monthTransactions} todayExpense={todayExpense} />}
+      {tab === 'stats' && <StatsPage month={month} onMonthChange={setMonth} transactions={monthTransactions} today={today} />}
       {tab === 'settings' && <SettingsPage transactions={transactions} dark={dark} setDark={setDark} onRestore={(items) => write(() => restore(items))} onClear={() => write(clear)} notify={notify} working={settingsWorking} setWorking={setSettingsWorking} />}
       {tab !== 'settings' && <button className="floating-add floating-add--picnic" onClick={openNew} aria-label="记一笔"></button>}
       <TabBar active={tab} onChange={setTab} />

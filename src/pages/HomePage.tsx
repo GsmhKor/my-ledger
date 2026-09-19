@@ -1,6 +1,6 @@
 import type { LedgerTransaction } from '../types/transaction'
 import { formatMoney } from '../utils/currency'
-import { daysInMonth, monthKey, toLocalDateString } from '../utils/date'
+import { daysInMonth } from '../utils/date'
 import { MonthSwitcher } from '../components/MonthSwitcher'
 import { TransactionRow } from '../components/TransactionRow'
 import { EmptyState } from '../components/EmptyState'
@@ -10,19 +10,18 @@ interface Props {
   month: string
   onMonthChange: (month: string) => void
   transactions: LedgerTransaction[]
+  today: string
   todayExpense: number
   onEdit: (transaction: LedgerTransaction) => void
   onSeeAll: () => void
 }
 
-export function HomePage({ month, onMonthChange, transactions, todayExpense, onEdit, onSeeAll }: Props) {
+export function HomePage({ month, onMonthChange, transactions, today, todayExpense, onEdit, onSeeAll }: Props) {
   const expenses = transactions.filter((item) => item.type === 'expense')
   const expense = expenses.reduce((sum, item) => sum + item.amount, 0)
-  const today = new Date()
-  const currentMonth = monthKey(today)
-  const todayKey = toLocalDateString(today)
-  const elapsedDays = month < currentMonth ? daysInMonth(month) : month === currentMonth ? today.getDate() : 0
-  const elapsedExpense = expenses.filter((item) => item.date <= todayKey).reduce((sum, item) => sum + item.amount, 0)
+  const currentMonth = today.slice(0, 7)
+  const elapsedDays = month < currentMonth ? daysInMonth(month) : month === currentMonth ? Number(today.slice(8, 10)) : 0
+  const elapsedExpense = expenses.filter((item) => item.date <= today).reduce((sum, item) => sum + item.amount, 0)
   const todayExpenseText = formatMoney(todayExpense)
   const expenseText = formatMoney(expense)
   const averageText = elapsedDays ? formatMoney(elapsedExpense / elapsedDays) : '—'

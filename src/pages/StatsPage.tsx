@@ -1,7 +1,7 @@
 import { getCategory } from '../constants/categories'
 import type { LedgerTransaction } from '../types/transaction'
 import { formatMoney } from '../utils/currency'
-import { daysInMonth, monthKey } from '../utils/date'
+import { daysInMonth } from '../utils/date'
 import { EmptyState } from '../components/EmptyState'
 import { MonthSwitcher } from '../components/MonthSwitcher'
 import { CategorySymbol } from '../components/CategorySymbol'
@@ -10,10 +10,10 @@ interface Props {
   month: string
   onMonthChange: (month: string) => void
   transactions: LedgerTransaction[]
-  todayExpense: number
+  today: string
 }
 
-export function StatsPage({ month, onMonthChange, transactions, todayExpense }: Props) {
+export function StatsPage({ month, onMonthChange, transactions, today }: Props) {
   const expenses = transactions.filter((item) => item.type === 'expense')
   const total = expenses.reduce((sum, item) => sum + item.amount, 0)
   const totals = new Map<string, number>()
@@ -31,9 +31,8 @@ export function StatsPage({ month, onMonthChange, transactions, todayExpense }: 
     return { day, amount }
   })
   const maxDaily = Math.max(...daily.map((item) => item.amount), 0)
-  const today = new Date()
-  const currentMonth = monthKey(today)
-  const elapsedDays = month < currentMonth ? daily.length : month === currentMonth ? today.getDate() : 0
+  const currentMonth = today.slice(0, 7)
+  const elapsedDays = month < currentMonth ? daily.length : month === currentMonth ? Number(today.slice(8, 10)) : 0
   const elapsedExpense = daily.slice(0, elapsedDays).reduce((sum, item) => sum + item.amount, 0)
   const averageDaily = elapsedDays ? elapsedExpense / elapsedDays : null
   const projectedExpense = averageDaily === null ? null : month < currentMonth ? total : averageDaily * daily.length
@@ -54,8 +53,6 @@ export function StatsPage({ month, onMonthChange, transactions, todayExpense }: 
         <div className="section-heading trend-heading">
           <h2>每日支出</h2>
           <dl className="trend-summary">
-            <div><dt>本日支出</dt><dd>{formatMoney(todayExpense)}</dd></div>
-            <div><dt>平均支出</dt><dd>{averageDaily === null ? '—' : formatMoney(averageDaily)}</dd></div>
             <div><dt>本月预测</dt><dd>{projectedExpense === null ? '—' : formatMoney(projectedExpense)}</dd></div>
           </dl>
         </div>
