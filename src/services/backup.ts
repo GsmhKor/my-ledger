@@ -1,4 +1,3 @@
-import { getCategory } from '../constants/categories'
 import type { BackupFile, LedgerTransaction } from '../types/transaction'
 
 function downloadFile(name: string, contents: string, type: string) {
@@ -8,27 +7,6 @@ function downloadFile(name: string, contents: string, type: string) {
   anchor.download = name
   anchor.click()
   setTimeout(() => URL.revokeObjectURL(url), 1000)
-}
-
-function escapeCsv(value: string | number) {
-  const text = String(value)
-  return /[",\n]/.test(text) ? `"${text.replaceAll('"', '""')}"` : text
-}
-
-export function exportCsv(transactions: LedgerTransaction[]) {
-  const rows = [
-    ['日期', '类型', '分类', '金额', '币种', '备注'],
-    ...transactions.map((item) => [
-      item.date,
-      item.type === 'expense' ? '支出' : '收入',
-      getCategory(item.category).label,
-      item.amount,
-      item.currency,
-      item.note,
-    ]),
-  ]
-  const csv = `\uFEFF${rows.map((row) => row.map(escapeCsv).join(',')).join('\r\n')}`
-  downloadFile(`我的账本-${new Date().toISOString().slice(0, 10)}.csv`, csv, 'text/csv;charset=utf-8')
 }
 
 export function exportJson(transactions: LedgerTransaction[]) {

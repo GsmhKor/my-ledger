@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { exportCsv, exportJson, readBackup } from '../services/backup'
+import { exportJson, readBackup } from '../services/backup'
 import type { LedgerTransaction } from '../types/transaction'
 import { Icon } from '../components/Icon'
 import catSettingsPrivacy from '../assets/cat-settings-privacy.webp'
@@ -50,9 +50,8 @@ export function SettingsPage({ transactions, dark, setDark, onRestore, onClear, 
     </section>
     <h2 className="settings-section-title">数据与备份</h2>
     <section className="settings-card">
-      <button onClick={() => exportCsv(transactions)} disabled={!transactions.length}><span className="settings-icon blue"><Icon name="download" size={20} /></span><span>导出 CSV<small>便于用 Excel 查看</small></span><Icon name="chevron-right" size={18} /></button>
       <button onClick={() => exportJson(transactions)} disabled={!transactions.length}><span className="settings-icon green"><Icon name="download" size={20} /></span><span>导出完整 JSON 备份<small>包含全部账单字段</small></span><Icon name="chevron-right" size={18} /></button>
-      <button onClick={() => fileInput.current?.click()} disabled={working}><span className="settings-icon orange"><Icon name="upload" size={20} /></span><span>从 JSON 恢复<small>将覆盖当前数据</small></span><Icon name="chevron-right" size={18} /></button>
+      <button onClick={() => fileInput.current?.click()} disabled={working}><span className="settings-icon orange"><Icon name="upload" size={20} /></span><span>从备份恢复<small>将覆盖当前数据</small></span><Icon name="chevron-right" size={18} /></button>
       <input ref={fileInput} hidden type="file" accept="application/json,.json" onChange={(e) => importBackup(e.target.files?.[0])} />
     </section>
     <h2 className="settings-section-title">外观</h2>
